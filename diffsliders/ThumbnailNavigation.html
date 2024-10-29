@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thumbnail Navigation Carousel</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+      .carousel {
+        width: 30rem;
+        position: relative;
+        margin: auto;
+      }
+
+      .carousel h1 {
+        text-align: center;
+        font-size: 2rem;
+        padding: 2rem 0;
+      }
+      .carousel img {
+        width: 100%;
+        height: auto;
+        display: none;
+      }
+      .carousel img.active {
+        display: block;
+      }
+      .thumbnails {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .thumbnails img {
+        width: 50px;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.3s;
+      }
+      .thumbnails img.selected {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel">
+      <h1>Thumbnail Navigation Carousel</h1>
+      <img src="image1.webp" class="active" alt="Image 1" />
+      <img src="image2.jpg" alt="Image 2" />
+      <img src="image3.jpg" alt="Image 3" />
+    </div>
+    <div class="thumbnails">
+      <img
+        src="image1.webp"
+        onclick="selectSlide(0)"
+        class="selected"
+        alt="Thumbnail 1"
+      />
+      <img src="image2.jpg" onclick="selectSlide(1)" alt="Thumbnail 2" />
+      <img src="image3.jpg" onclick="selectSlide(2)" alt="Thumbnail 3" />
+    </div>
+
+    <script>
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".carousel img");
+        const thumbnails = document.querySelectorAll(".thumbnails img");
+        slides[currentSlide].classList.remove("active");
+        thumbnails[currentSlide].classList.remove("selected");
+        currentSlide = index;
+        slides[currentSlide].classList.add("active");
+        thumbnails[currentSlide].classList.add("selected");
+      }
+
+      function selectSlide(index) {
+        showSlide(index);
+      }
+    </script>
+  </body>
+</html>
